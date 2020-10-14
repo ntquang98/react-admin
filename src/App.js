@@ -3,13 +3,14 @@ import { Admin, Resource, ListGuesser } from 'react-admin';
 import { PostList, PostEdit, PostCreate } from './posts';
 import Dashboard from './pages/Dashboard';
 import authProvider from './provider/authProvider';
-//import dataProvider from './provider/dataProvider';
 import Login from './pages/Login';
 import theme from './theme';
 import MyLayout from './layout';
-import data from './provider/data'
 import users from './pages/users';
 import customRoutes from './customRoutes';
+import jsonServerProvider from 'ra-data-json-server';
+
+const dataProvider = jsonServerProvider('https://my-json-server.typicode.com/ntquang98/react-admin');
 
 /* const httpClient = (url, options = {}) => {
     if(!options.headers){
@@ -25,7 +26,7 @@ const App = () => (
         theme={theme}
         dashboard={Dashboard}
         authProvider={authProvider}
-        dataProvider={data}
+        dataProvider={dataProvider}
         loginPage={Login}
         layout={MyLayout}
         customRoutes={customRoutes}

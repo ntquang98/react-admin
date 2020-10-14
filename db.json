@@ -122,10 +122,11 @@
       "last_sign_in_at":null,
       "last_sign_in_io":"",
       "locked_at":null,
+      "email":"ntquang98@gmail.com",
       "password":"quang123",
       "reset_password_sent_at":null,
       "reset_password_token":"",
-      "status":"",
+      "status":"ACTIVATED",
       "tfa_secret_key":"abcd",
       "un_lock_token":null
     },
@@ -145,10 +146,11 @@
       "last_sign_in_at":null,
       "last_sign_in_io":"",
       "locked_at":null,
+      "email":"sieunhan123@gmail.com",
       "password":"quang123",
       "reset_password_sent_at":null,
       "reset_password_token":"",
-      "status":"",
+      "status":"ACTIVATED",
       "tfa_secret_key":"abcd",
       "un_lock_token":null
     }
