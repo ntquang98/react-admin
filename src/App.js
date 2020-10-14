@@ -7,6 +7,9 @@ import Login from './pages/Login';
 import theme from './theme';
 import MyLayout from './layout';
 import users from './pages/users';
+import accounts from './pages/accounts';
+import currencies from './pages/currencies';
+import admin_users from './pages/admin_users';
 import customRoutes from './customRoutes';
 import jsonServerProvider from 'ra-data-json-server';
 
@@ -32,9 +35,9 @@ const App = () => (
         customRoutes={customRoutes}
     >
         <Resource {...users} />
-        <Resource name="currency" list={ListGuesser} />
-        <Resource name="accounts" list={ListGuesser} />
-        <Resource name="admin_users" list={ListGuesser} />
+        <Resource {...accounts} />
+        <Resource {...currencies}/>
+        <Resource {...admin_users}/>
     </Admin>
 );
 

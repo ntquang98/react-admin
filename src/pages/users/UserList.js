@@ -1,9 +1,6 @@
 import React from 'react';
 import { 
-	Box, 
 	Chip, 
-	useMediaQuery, 
-	Theme, 
 	makeStyles, 
 	TableCell,
 	TableRow,
@@ -17,7 +14,8 @@ import {
 	Datagrid,
 	List,
 	DatagridBody,
-	ChipField
+	ChipField,
+	EditButton
 } from 'react-admin';
 
 const useQuickFilterStyles = makeStyles(theme => ({
@@ -34,9 +32,7 @@ const QuickFilter = ({ label }) => {
 export const UserFilter = props => (
 	<Filter {...props}>
 		<SearchInput source='q' alwaysOn />
-		<QuickFilter source='name' label='Name' defaultValue={true} />
-		<QuickFilter source='email' label='Email' defaultValue={150} />
-		<QuickFilter source='tags' label='Tagged Code' defaultValue={[3]} />
+		<QuickFilter source='status' label='Status' defaultValue={"ACTIVATED"} />
 	</Filter>
 );
 
@@ -52,8 +48,19 @@ const MyDataGridRow = ({record, resource, id, onToggleItem, children, selected, 
 				/>
 			</TableCell>
 			{React.Children.map(children, field => {
+				if (field.props.source === 'status') {
+					return (
+						<TableCell key={`${id}-${field.props.source}`}>
+						<Chip
+							label={record[field.props.source] || "INACTIVE"}
+							color={record[field.props.source] === "ACTIVATED" ? "primary" : "default"}
+							size="small"
+						/>
+            			</TableCell>
+					)
+				}
 				return (
-				<TableCell key={`${id}-${field.props.source}`}>
+					<TableCell key={`${id}-${field.props.source}`}>
 					{
 						React.cloneElement(field, {
 							record,
@@ -61,7 +68,7 @@ const MyDataGridRow = ({record, resource, id, onToggleItem, children, selected, 
 							resource
 						})
 					}
-            	</TableCell>
+            		</TableCell>
 				)
 			})}
 		</TableRow>
@@ -81,10 +88,9 @@ const UserList = props => {
 				<TextField source='last_name' />
 				<EmailField source='email' />
 				<ChipField 
-					source='status' 
-					variant="outlined" 
-					emptyText="INACTIVE"
+					source='status'
 				/>
+				<EditButton />
 			</MyDataGrid>
 		</List>
 	);

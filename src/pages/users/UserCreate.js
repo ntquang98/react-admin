@@ -9,8 +9,10 @@ const UserCreate = props => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <TextInput source="name" />
+        <TextInput source="first_name" />
+        <TextInput source="last_name" />
         <TextInput source="email" />
+        <TextInput source="password" />
       </SimpleForm>
     </Create>
   )

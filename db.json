@@ -150,7 +150,7 @@
       "password":"quang123",
       "reset_password_sent_at":null,
       "reset_password_token":"",
-      "status":"ACTIVATED",
+      "status":"INACTIVE",
       "tfa_secret_key":"abcd",
       "un_lock_token":null
     }
