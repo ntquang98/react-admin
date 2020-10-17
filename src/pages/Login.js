@@ -9,7 +9,7 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
-import { useLogin } from 'react-admin';
+import { useLogin, useNotify } from 'react-admin';
 import Page from '../components/Page';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,6 +24,33 @@ const useStyles = makeStyles((theme) => ({
 const Login = () => {
   const classes = useStyles();
   const login = useLogin();
+  const notify = useNotify();
+
+  const onSubmit = (values, actions) => {
+
+    login(values)
+    .then( _ => {
+      notify("Success !!!");
+      actions.setSubmitting(false);
+      actions.resetForm({
+        values: {
+          email: '',
+          password: ''
+        }
+      });
+    })
+    .catch(error => {
+      notify(error, 'error');
+      actions.setSubmitting(false);
+      actions.resetForm({
+        values: {
+          email: '',
+          password: ''
+        }
+      });
+    });
+  }
+
   return (
     <Page
       className={classes.root}
@@ -42,11 +69,7 @@ const Login = () => {
               email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
               password: Yup.string().max(255).required('Password is required'),
             })}
-            onSubmit={(values) => {
-              const credentials = values;
-              console.log(values);
-              login(credentials);
-            }}
+            onSubmit={onSubmit}
           >
             {({
               errors,
